@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
-    "@changesets/cli": "2.29.8",
+    "@changesets/cli": "2.31.0",
     "@changesets/pre": "2.0.2",
     "@chat-adapter/shared": "4.20.0",
     "@types/mdast": "^4.0.4",
