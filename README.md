@@ -3,8 +3,6 @@
 Vercel Chat SDK adapter for [Resend](https://resend.com) email. Bidirectional: receive emails via Resend webhooks, send emails via Resend API.
 
 ## Install
-
-```bash
 pnpm add @resend/chat-sdk-adapter chat @chat-adapter/shared
 ```
 
@@ -53,23 +51,9 @@ Forward Resend webhooks to your server's `/webhook` endpoint. See [examples/basi
 | `FROM_ADDRESS` | Used by example apps only |
 
 ### `ResendAdapterConfig`
-
-```ts
 interface ResendAdapterConfig {
   /** Sender email address (required). */
-  fromAddress: string;
-  /** Display name for the From header. */
-  fromName?: string;
-  /** Resend API key. Falls back to RESEND_API_KEY env var. */
-  apiKey?: string;
-  /** Webhook signing secret. Falls back to RESEND_WEBHOOK_SECRET env var. */
-  webhookSecret?: string;
-}
-```
-
-## Features
-
-### Email Threading
+  
 
 Threads are resolved using standard `Message-ID`, `In-Reply-To`, and `References` email headers. Reply chains are automatically grouped into Chat SDK threads.
 
@@ -87,32 +71,18 @@ await thread.post("Hello from the bot!");
 
 Send rich HTML emails using Chat SDK Card elements, rendered via `@react-email/components`:
 
-```ts
 await thread.post({
   card: {
     type: "card",
     title: "Order Confirmed",
     children: [
-      { type: "text", content: "Your order #1234 has been shipped." },
-      { type: "divider" },
-      { type: "link-button", label: "Track Order", url: "https://example.com/track/1234" },
-    ],
-  },
-  fallbackText: "Order #1234 confirmed",
-});
-```
-
-### Attachments
+      { type: "text", content: "Your order #1234 has been shipped." }
 
 Inbound email attachments are available in `message.raw.attachments` with `filename`, `content_type`, and `url` fields.
 
 ## Unsupported Operations
 
-Email is inherently one-shot. The following operations throw `NotImplementedError`:
-
-- `editMessage` / `deleteMessage`
-- `addReaction` / `removeReaction`
-- `startTyping`
+Email is inherently one-shot. The following operations throw 
 
 ## Examples
 
